@@ -34,9 +34,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.EntradaAltura = new System.Windows.Forms.NumericUpDown();
-            this.label3 = new System.Windows.Forms.Label();
             this.EntradaComprimento = new System.Windows.Forms.NumericUpDown();
             this.button1 = new System.Windows.Forms.Button();
+            this.ckBox = new System.Windows.Forms.CheckedListBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.EntradaLados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EntradaAltura)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EntradaComprimento)).BeginInit();
@@ -131,15 +133,6 @@
             0,
             0});
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(794, 95);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Comprimento";
-            // 
             // EntradaComprimento
             // 
             this.EntradaComprimento.Increment = new decimal(new int[] {
@@ -177,11 +170,50 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // ckBox
+            // 
+            this.ckBox.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.ckBox.CheckOnClick = true;
+            this.ckBox.FormattingEnabled = true;
+            this.ckBox.Items.AddRange(new object[] {
+            "Azul",
+            "Cimento",
+            "Ferro",
+            "Grama",
+            "Terra"});
+            this.ckBox.Location = new System.Drawing.Point(797, 183);
+            this.ckBox.Name = "ckBox";
+            this.ckBox.Size = new System.Drawing.Size(99, 79);
+            this.ckBox.Sorted = true;
+            this.ckBox.TabIndex = 9;
+            this.ckBox.Tag = "textura";
+            this.ckBox.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(794, 95);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(68, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Comprimento";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(794, 167);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(43, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Textura";
+            // 
             // OpenTK3D
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(908, 515);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.ckBox);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.EntradaComprimento);
@@ -210,9 +242,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown EntradaAltura;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown EntradaComprimento;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckedListBox ckBox;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }
 

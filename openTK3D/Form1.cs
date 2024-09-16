@@ -14,6 +14,7 @@ namespace openTK3D
         Vector3d dir = new Vector3d(0, -450, 170);        //direção da câmera
         Vector3d pos = new Vector3d(0, -550, 170);     //posiçãoo da câmera
         float camera_rotation = 0;                     //rotação no eixo Z
+        int text; // textura
 
         int lado = 3;
         int altura = 20;
@@ -63,7 +64,7 @@ namespace openTK3D
             float n = 360 / lados;
 
             GL.Clear(ClearBufferMask.ColorBufferBit);
-            GL.Color3(Color.White);
+            GL.Color3(Color.Transparent);
             GL.Begin(PrimitiveType.Triangles);
             for (float i = 0; i < 360; i += n)
             {
@@ -80,22 +81,28 @@ namespace openTK3D
             }
             GL.End();
 
-            GL.Color3(Color.White);
+            GL.Enable(EnableCap.Texture2D); // inicia a texto (habilita o uso de textura para carregada)
+            GL.BindTexture(TextureTarget.Texture2D, text);
+            GL.Color3(Color.Transparent);
             GL.Begin(PrimitiveType.Triangles);
             for (float i = 0; i < 360; i += n)
             {
                 double degInRad = i * (3.1416 / 180);
-                GL.Color3(Color.Red);
+                GL.Color3(Color.Transparent);
+                GL.TexCoord2(0,1);
                 GL.Vertex3(Math.Cos(degInRad) * radius, Math.Sin(degInRad) * radius, 0);
-                GL.Color3(Color.Blue);
+                GL.Color3(Color.Transparent);
+                GL.TexCoord2(0.5, 0);
                 GL.Vertex3(0, 0, altura);
                 float d = i + n;
                 degInRad = d * (3.1416 / 180);
-                GL.Color3(Color.Green);
+                GL.Color3(Color.Transparent);
+                GL.TexCoord2(1, 1);
                 GL.Vertex3(Math.Cos(degInRad) * radius, Math.Sin(degInRad) * radius, 0);
 
             }
             GL.End();
+            GL.Disable(EnableCap.Texture2D);
 
         }
 
@@ -217,6 +224,8 @@ namespace openTK3D
         {
             GL.ClearColor(Color.Black);         // definindo a cor de limpeza do fundo da tela
             GL.Enable(EnableCap.Light0);
+
+            text = LoadTexture("./textura/azul.jpg");
 
             SetupViewport(glControl1);                      //configura a janela de pintura
         }
@@ -391,10 +400,24 @@ namespace openTK3D
                 int.TryParse(EntradaLados.Value.ToString(), out lado);
                 int.TryParse(EntradaAltura.Value.ToString(), out altura);
                 int.TryParse(EntradaComprimento.Value.ToString(), out comprimento);
-
+                glControl1.Invalidate();
+                glControl2.Invalidate();
             }
             catch { MessageBox.Show("Não deu certo"); }
 
+        }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            foreach (string i in ckBox.Items) {
+                if (ckBox.CheckedItems.Count != 0)
+                {
+                    if (i == ckBox.CheckedItems[ckBox.CheckedItems.Count - 1])
+                    {
+                        MessageBox.Show(i);
+                    }
+                }
+            }
         }
     }
 }
