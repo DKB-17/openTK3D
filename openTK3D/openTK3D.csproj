@@ -91,7 +91,10 @@
     <Content Include="textura\azul.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="textura\cimento.jpg" />
+    <Content Include="textura\ferro.jpg" />
     <Content Include="textura\grama.jpg" />
+    <Content Include="textura\terra.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

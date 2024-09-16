@@ -113,7 +113,7 @@ namespace openTK3D
             float n = 360 / lados;
 
             GL.Clear(ClearBufferMask.ColorBufferBit);
-            GL.Color3(Color.White);
+            GL.Color3(Color.Transparent);
             GL.Begin(PrimitiveType.Triangles);
             for (float i = 0; i < 360; i += n)
             {
@@ -130,7 +130,7 @@ namespace openTK3D
             }
             GL.End();
 
-            GL.Color3(Color.White);
+            GL.Color3(Color.Transparent);
             GL.Begin(PrimitiveType.Triangles);
             for (float i = 0; i < 360; i += n)
             {
@@ -147,36 +147,46 @@ namespace openTK3D
             }
             GL.End();
 
+
+            GL.Enable(EnableCap.Texture2D);
+            GL.BindTexture(TextureTarget.Texture2D, text);
             for (float i = 0; i < 360; i += n)
             {
-                GL.Color3(Color.White);
+                GL.Color3(Color.Transparent);
                 GL.Begin(PrimitiveType.Triangles);
                 double degInRad = i * (3.1416 / 180);
-                GL.Color3(Color.Red);
+                GL.Color3(Color.Transparent);
+                GL.TexCoord2(1, 0);
                 GL.Vertex3(Math.Cos(degInRad) * radius, Math.Sin(degInRad) * radius, altura);
-                GL.Color3(Color.Blue);
+                GL.Color3(Color.Transparent);
+                GL.TexCoord2(0, 0);
                 GL.Vertex3(Math.Cos(degInRad) * radius, Math.Sin(degInRad) * radius, 0);
                 float d = i + n;
                 degInRad = d * (3.1416 / 180);
-                GL.Color3(Color.Green);
+                GL.Color3(Color.Transparent);
+                GL.TexCoord2(1, 1);
                 GL.Vertex3(Math.Cos(degInRad) * radius, Math.Sin(degInRad) * radius, altura);
                 GL.End();
 
-                GL.Color3(Color.White);
+                GL.Color3(Color.Transparent);
                 GL.Begin(PrimitiveType.Triangles);
                 degInRad = i * (3.1416 / 180);
-                GL.Color3(Color.Red);
+                GL.Color3(Color.Transparent);
+                GL.TexCoord2(0, 0);
                 GL.Vertex3(Math.Cos(degInRad) * radius, Math.Sin(degInRad) * radius, 0);
                 d = i + n;
                 degInRad = d * (3.1416 / 180);
-                GL.Color3(Color.Blue);
+                GL.Color3(Color.Transparent);
+                GL.TexCoord2(1, 1);
                 GL.Vertex3(Math.Cos(degInRad) * radius, Math.Sin(degInRad) * radius, altura);
-                GL.Color3(Color.Green);
+                GL.Color3(Color.Transparent);
+                GL.TexCoord2(1, 0);
                 GL.Vertex3(Math.Cos(degInRad) * radius, Math.Sin(degInRad) * radius, 0);
                 GL.End();
 
 
             }
+            GL.Disable(EnableCap.Texture2D);
 
         }
     
@@ -412,9 +422,20 @@ namespace openTK3D
             foreach (string i in ckBox.Items) {
                 if (ckBox.CheckedItems.Count != 0)
                 {
-                    if (i == ckBox.CheckedItems[ckBox.CheckedItems.Count - 1])
+                    if (ckBox.CheckedItems[ckBox.CheckedItems.Count - 1].Equals("Azul")) {
+                        text = LoadTexture("C:\\Users\\Diego\\source\\repos\\OpenGL3Db\\OpenGL3D\\openTK3D\\textura\\azul.jpg");
+                    }else if (ckBox.CheckedItems[ckBox.CheckedItems.Count - 1].Equals("Cimento"))
                     {
-                        MessageBox.Show(i);
+                        text = LoadTexture("C:\\Users\\Diego\\source\\repos\\OpenGL3Db\\OpenGL3D\\openTK3D\\textura\\cimento.jpg");
+                    }else if (ckBox.CheckedItems[ckBox.CheckedItems.Count - 1].Equals("Ferro"))
+                    {
+                        text = LoadTexture("C:\\Users\\Diego\\source\\repos\\OpenGL3Db\\OpenGL3D\\openTK3D\\textura\\ferro.jpg");
+                    }else if (ckBox.CheckedItems[ckBox.CheckedItems.Count - 1].Equals("Grama"))
+                    {
+                        text = LoadTexture("C:\\Users\\Diego\\source\\repos\\OpenGL3Db\\OpenGL3D\\openTK3D\\textura\\grama.jpg");
+                    }else if (ckBox.CheckedItems[ckBox.CheckedItems.Count - 1].Equals("Terra"))
+                    {
+                        text = LoadTexture("C:\\Users\\Diego\\source\\repos\\OpenGL3Db\\OpenGL3D\\openTK3D\\textura\\terra.jpg");
                     }
                 }
             }
